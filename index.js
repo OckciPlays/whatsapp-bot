@@ -13,8 +13,17 @@ http.createServer((req, res) => {
 }).listen(process.env.PORT || 3000);
 
 const client = new Client({
-    authStrategy: new LocalAuth(), // salva a sessão localmente
-    puppeteer: { headless: true }
+    authStrategy: new LocalAuth(),
+    puppeteer: {
+        headless: true,
+        executablePath: '/usr/bin/chromium', // caminho do Chrome no servidor
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage', // evita crash por falta de memória
+            '--disable-gpu'
+        ]
+    }
 });
 
 // Mostra o QR Code para conectar na primeira vez

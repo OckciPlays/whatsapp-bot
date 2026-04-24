@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: whatsapp-bot
+    env: node
+    buildCommand: apt-get install -y chromium && npm install
+    startCommand: node index.js
