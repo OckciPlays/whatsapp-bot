@@ -5,6 +5,13 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const cron = require('node-cron');
 
+// Adicione isso no seu index.js
+const http = require('http');
+
+http.createServer((req, res) => {
+    res.end('Bot online!');
+}).listen(process.env.PORT || 3000);
+
 const client = new Client({
     authStrategy: new LocalAuth(), // salva a sessão localmente
     puppeteer: { headless: true }
